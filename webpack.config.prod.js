@@ -1,4 +1,5 @@
 const { merge } = require("webpack-merge");
+const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
@@ -17,6 +18,10 @@ module.exports = merge(commonConfig, {
         ],
       },
     ],
+  },
+  output: {
+    path: path.resolve(__dirname, "docs"),
+    filename: "[name]-bundle.[contenthash].js",
   },
   plugins: [new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" })],
   optimization: {
