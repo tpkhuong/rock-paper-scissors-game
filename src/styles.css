@@ -1,3 +1,782 @@
-h1 {
-  color: red;
+:root {
+  /* primary */
+  --color-primary-dark-gray: hsl(0, 0%, 59%);
+  --color-primary-very-dark-gray: hsl(0, 0%, 17%); /* delete btn bg */
+  --color-primary-light-grayish-blue: hsl(239, 57%, 85%);
+  --color-primary-pale-red: hsl(357, 100%, 86%);
+
+  --color-neutral-dark-blue: hsl(212, 24%, 26%);
+  --color-neutral-grayish-blue: hsl(211, 10%, 45%); /* cancel btn*/
+  --color-neutral-light-gray: hsl(223, 19%, 93%);
+  --color-neutral-very-light-gray: hsl(228, 33%, 97%); /* app background */
+  --color-neutral-black: hsl(0, 0%, 0%);
+  --color-neutral-white: hsl(0, 0%, 100%);
+
+  --color-neutral-score: hsl(229, 64%, 46%);
+  --color-neutral-score-digit: hsl(229, 25%, 31%);
+  --color-neutral-logo-border: hsl(217, 16%, 45%);
+
+  /* rock */
+
+  --color-top-rock: hsl(349, 71%, 52%);
+  --color-bottom-rock: hsl(347, 75%, 35%);
+
+  /* paper */
+  --color-top-paper: hsl(229, 89%, 62%);
+  --color-bottom-paper: hsl(229, 65%, 46%);
+
+  /* scisssor */
+  --color-top-scissors: hsl(39, 84%, 51%);
+  --color-bottom-scissors: hsl(29, 75%, 44%);
+
+  --color-bg-first-half: hsl(214, 47%, 23%);
+  --color-bg-second-half: hsl(237, 49%, 15%);
+
+  /* inner */
+  /* 226,33,24 */
+  /* middle */
+  /* 226,37,21 */
+  /* outer */
+  /* 227,41,20 */
+
+  /* light shadow */
+  /* 223,22,77 */
+
+  /* top-half */
+
+  --color-light-shadow: hsl(223, 22%, 77%);
+
+  --color-dark-circle: hsl(223, 46%, 17%);
+
+  /* button circle shadows */
+
+  --inner-shadow: hsl(220, 33%, 27%);
+  --middle-shadow: hsl(218, 41%, 26%);
+  --outer-shadow: hsl(221, 38%, 25%);
+
+  /* desktop */
+
+  --selections-wrapper-padding: 60px;
+  --picked-wrapper-padding: 100px;
+
+  --selections-img-width: 80px;
+  --picked-img-width: 100px;
+
+  --selections-brdr-width: 24px;
+  --picked-brdr-width: 36px;
+
+  --selections-slide-up: -9px;
+  --picked-slide-up: -12px;
+
+  --selections-img-height: 86px;
+  --picked-img-height: 105px;
+
+  /* mobile */
+  /* selections and picked same size */
+
+  --mobile-circle-padding: 42px;
+  --mobile-circle-img: 35px;
+  --mobile-circle-brdr-width: 15px;
+
+  /* dark circle size */
+
+  --dark-inset-size: 20px;
+
+  /* shadow for picked button */
+
+  --mobile-first-shadow: 20px;
+  --mobile-second-shadow: 45px;
+  --mobile-third-shadow: 75px;
+
+  --matching-gap-padding: 16px;
+
+  /* focus/hover outline */
+
+  --mobile-focus: 8px;
+
+  --brdr-radius: 16px;
+  /* padding */
+  --padding-small: 8px;
+  --padding-medium: 16px;
+  --padding-large: 24px;
+  /* margin */
+  --margin-small: 8px;
+  --margin-medium: 16px;
+  --margin-large: 24px;
+
+  --color-hsl-black: 0, 0%, 0%;
+
+  --box-shadow: 0px 0.3px 0.7px rgba(0, 0, 0, 0.02),
+    0px 0.7px 1.7px rgba(0, 0, 0, 0.028), 0px 1.4px 3.3px rgba(0, 0, 0, 0.035),
+    0px 2.5px 5.8px rgba(0, 0, 0, 0.042), 0px 4.6px 10.9px rgba(0, 0, 0, 0.05),
+    0px 11px 26px rgba(0, 0, 0, 0.07);
+
+  --font-family-barlow: "Barlow Semi", sans-serif;
+  --font-family-bellefair: "Bellefair", serif;
+}
+
+/* reset */
+
+/*
+    1. Use a more-intuitive box-sizing model.
+  */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+/*
+    2. Remove default margin
+  */
+* {
+  margin: 0;
+}
+/*
+    3. Allow percentage-based heights in the application
+  */
+html,
+body {
+  height: 100%;
+}
+
+/*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+    6. Improve media defaults
+  */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+    7. Remove built-in form typography styles
+  */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+    8. Avoid text overflows
+  */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/*
+    9. Create a root stacking context
+  */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+button {
+  border: none;
+}
+
+ul[role],
+li[role] {
+  list-style: none;
+  padding: 0;
+}
+
+/* utilities */
+
+.max-width {
+  max-width: 1375px;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+[href="#main-content"] {
+  position: absolute;
+  top: 0;
+  left: 100%; /* move off the screen */
+}
+
+[href="#main-content"]:focus {
+  left: 62px;
+}
+
+.skip-link {
+  display: none;
+  border: 1px solid red;
+  padding-block: 16px;
+  padding-inline: 32px;
+  z-index: 3;
+}
+
+@media screen and (min-width: 70rem) {
+  .skip-link {
+    display: inline-block;
+  }
+}
+
+/* general styles */
+
+[id="app-wrapper"] {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-family-barlow);
+  background-color: var(--color-neutral-white);
+}
+
+button {
+  cursor: pointer;
+}
+
+/* individual sections */
+
+/* logo and score */
+
+.logo-score-wrapper {
+  border: 2px solid var(--color-neutral-logo-border);
+  display: flex;
+  align-items: center;
+  margin-block-end: 16px;
+  padding: var(--logo-padding, 12px);
+  justify-content: space-between;
+  border-radius: 6px;
+  max-width: 850px;
+}
+
+.logo {
+  width: 90px;
+}
+
+.score-container {
+  background-color: var(--color-neutral-white);
+  display: flex;
+  width: max-content;
+  padding: var(--score-main-space, 24px);
+  flex-direction: column;
+  align-items: center;
+  padding-block: 8px;
+  border-radius: inherit;
+}
+
+.score-text {
+  color: var(--color-neutral-score);
+  margin-block-end: -12px;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.score-digit {
+  color: var(--color-neutral-score-digit);
+  font-size: 2.7rem;
+  font-weight: 700;
+  margin-block-end: -8px;
+}
+
+/* signs component */
+
+.bg-img {
+  padding: var(--main-padding, 20px);
+  min-height: 100%;
+  background-image: radial-gradient(
+    var(--color-bg-first-half),
+    var(--color-bg-second-half)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-block-end: 38px;
+}
+
+.keyboard-instructions {
+  display: none;
+}
+
+.paper,
+.rock,
+.scissor {
+  position: relative;
+  width: max-content;
+  border-radius: 50%;
+}
+
+.paper:focus,
+.rock:focus,
+.scissor:focus,
+.paper:hover,
+.rock:hover,
+.scissor:hover {
+  outline: var(--focus-hover, var(--mobile-focus)) solid blanchedalmond;
+}
+
+.bottom {
+  /* want to use max-content with images */
+  width: max-content;
+  background-color: white;
+  padding: var(--img-wrapper, var(--mobile-circle-padding));
+  border-radius: 50%;
+}
+
+.bottom img {
+  width: var(--img-width, var(--mobile-circle-img));
+  height: var(--signs-img-height, 38px);
+}
+
+.circle {
+  position: absolute;
+  inset: 0;
+  border: var(--brdr-width, var(--mobile-circle-brdr-width)) solid
+    var(--brdr-color, black);
+  border-radius: 50%;
+  /* border-color: var(--brdr-color, white); */
+}
+
+/* testing out algorithm */
+
+/* .circle::after {
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 0;
+    background-color: red;
+    border-radius: 50%;
+  } */
+
+/* selections or picked */
+
+[data-hide="true"] {
+  display: none;
+}
+
+.selections-wrapper {
+  width: 312px;
+  margin-inline: auto;
+  background-image: url("./images/bg-triangle.svg");
+  background-repeat: no-repeat;
+  background-size: 82%;
+  background-position: center 39px;
+}
+
+.selections-top-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.selections-bottom-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-block-start: 24px;
+}
+
+/* Battle */
+
+[data-start-battle="false"] {
+  display: none;
+}
+[data-start-battle="true"] {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.battle-wrapper {
+  /* display: flex; */
+}
+
+[class$="-picked"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.picked-text {
+  color: var(--color-neutral-white);
+  letter-spacing: 2px;
+}
+
+.player-picked {
+  width: min-content;
+  grid-area: player;
+}
+
+.house-picked {
+  width: max-content;
+  grid-area: house;
+}
+
+/* show box-shadow for either player or house picked element */
+
+/* [data-result="player"] .player-picked {
+  }
+  
+  [data-result="house"] .house-picked {
+  } */
+
+/* declare box-shadow for winner with selector data-winner="true" */
+
+[data-winner="true"] .picked {
+  /* mobile: first shadow = 20px, second shadow = 45px, third shadow = 75px */
+  box-shadow: 0px 0px 0px var(--first-shadow, var(--mobile-first-shadow))
+      var(--inner-shadow),
+    0px 0px 0px var(--second-shadow, var(--mobile-second-shadow))
+      var(--middle-shadow),
+    0px 0px 0px var(--third-shadow, var(--mobile-third-shadow))
+      var(--outer-shadow);
+}
+
+.picked-wrapper {
+  position: relative;
+  order: -1;
+  margin-block-end: 20px;
+}
+
+.dark-circle {
+  background-color: var(--color-dark-circle);
+  position: absolute;
+  inset: var(--circle-shadow-size, 12px);
+  border-radius: 50%;
+}
+
+[data-fade="false"].house-picked button {
+  opacity: 0;
+}
+
+/* results */
+
+[data-battle-results="false"] {
+  opacity: 0;
+}
+
+.results-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-inline: auto;
+  margin-block-start: 92px;
+  grid-area: result;
+}
+
+.result-dynamic-text {
+  color: var(--color-neutral-white);
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.reset-game {
+  font-size: 1rem;
+  color: var(--color-neutral-score-digit);
+  width: 100%;
+  padding-block: 14px;
+  border-radius: 8px;
+}
+
+/* rules btn */
+
+.rules-btn:focus,
+.close-modal-btn:focus,
+.rules-modal:focus,
+.reset-game:focus,
+.keyboard-instructions:focus,
+.rules-btn:hover,
+.close-modal-btn:hover,
+.reset-game:hover {
+  outline: 5px solid blue;
+}
+
+.rules-btn {
+  background-color: transparent;
+  color: var(--color-neutral-white);
+  border: 1px solid currentColor;
+  padding: 38px;
+  padding-block: 10px;
+  border-radius: 7px;
+  display: block;
+  margin-inline: auto;
+  letter-spacing: 4px;
+}
+
+/* target modal wrapper */
+
+[data-launch-modal="false"] + .modal-wrapper {
+  display: none;
+}
+
+/* rules modal */
+
+.rules-modal {
+  color: var(--color-neutral-score-digit);
+  background-color: var(--color-neutral-white);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  max-width: 405px;
+}
+
+.rules-modal h2 {
+  font-size: 2rem;
+}
+
+.close-modal-btn {
+  background-color: transparent;
+  padding: 0;
+}
+
+@media screen and (min-width: 68.75rem) {
+  .bg-img {
+    --main-padding: 32px;
+    position: relative;
+  }
+
+  [data-hide-instructions="true"] {
+    display: none;
+  }
+
+  .keyboard-instructions {
+    display: revert;
+    position: absolute;
+    background-color: var(--color-neutral-white);
+    color: var(--color-neutral-score-digit);
+    /* inset: 0; */
+    width: max-content;
+    height: min-content;
+    margin-block: auto;
+    left: 15px;
+    bottom: 200px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    padding: 24px;
+  }
+
+  [data-hide-instructions="true"] {
+    display: none;
+  }
+
+  .next-text-instructions {
+    margin-block-start: 24px;
+  }
+
+  .arrow-keys-text {
+    font-weight: 700;
+  }
+
+  .arrow-keys-instructions {
+    font-weight: normal;
+  }
+
+  /* logo wrapper */
+
+  .logo-score-wrapper {
+    min-width: 850px;
+    align-self: center;
+    --logo-padding: 20px;
+    padding-inline: 30px;
+    border-radius: 16px;
+  }
+
+  .logo {
+    width: 170px;
+  }
+
+  .score-container {
+    --score-main-space: 46px;
+    padding-block: 14px;
+    border-radius: 8px;
+  }
+
+  .score-text {
+    font-size: 1.2rem;
+  }
+
+  .score-digit {
+    font-size: 3.8rem;
+  }
+
+  /* selections */
+
+  .selections-wrapper {
+    width: 525px;
+    background-size: 65%;
+    background-position: center 84px;
+  }
+
+  .selections-bottom-wrapper {
+    margin-block-start: 48px;
+  }
+
+  [data-start-battle="true"] {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "player result house";
+  }
+
+  .battle-wrapper {
+    min-width: 1080px;
+    align-self: center;
+  }
+
+  [data-selector]:focus,
+  [data-selector]:hover {
+    --focus-hover: 28px;
+  }
+
+  .picked-wrapper {
+    order: revert;
+    margin-block-end: revert;
+    margin-block-start: 55px;
+  }
+
+  .house-picked {
+    justify-self: end;
+  }
+
+  /* declaring z-index 1 to span with text you picked or house picked to have it stack on top of sign button box-shadow */
+
+  .picked-text {
+    z-index: 1;
+    font-size: 1.6rem;
+  }
+
+  [data-winner="true"] .picked {
+    --first-shadow: 65px;
+    --second-shadow: 135px;
+    --third-shadow: 205px;
+  }
+
+  .results-wrapper {
+    align-self: center;
+    z-index: 1;
+  }
+
+  .result-dynamic-text {
+    font-size: 3.6rem;
+  }
+
+  .reset-game {
+    font-size: 1.2rem;
+  }
+
+  .selections {
+    --img-wrapper: var(--selections-wrapper-padding);
+    --img-width: var(--selections-img-width);
+    --brdr-width: var(--selections-brdr-width);
+    --attr-translate: var(--selections-slide-up);
+    --signs-img-height: var(--selections-img-height);
+  }
+
+  .picked {
+    --img-wrapper: var(--picked-wrapper-padding);
+    --img-width: var(--picked-img-width);
+    --brdr-width: var(--picked-brdr-width);
+    --attr-translate: var(--picked-slide-up);
+    --signs-img-height: var(--picked-img-height);
+  }
+  /* rules btn */
+  .rules-btn {
+    margin-inline: revert;
+    margin-inline-start: auto;
+  }
+  /* rules modal */
+
+  .modal-wrapper {
+    position: fixed;
+    inset: 0;
+    background-color: hsla(0, 0%, 0%, 0.5);
+  }
+
+  .rules-modal {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "modal-title modal-btn"
+      "modal-img modal-img";
+    height: min-content;
+    margin: auto;
+    gap: 48px 0px;
+    padding: 20px;
+    padding-inline: 34px;
+    border-radius: 8px;
+  }
+
+  .rules-modal h2 {
+    grid-area: modal-title;
+    justify-self: start;
+  }
+
+  .rules-img-wrapper {
+    grid-area: modal-img;
+  }
+
+  .close-modal-btn {
+    grid-area: modal-btn;
+    justify-self: end;
+  }
+}
+
+/* rock, paper, scissors */
+
+.paper .circle.bottom-half {
+  --brdr-color: var(--color-bottom-paper);
+}
+
+.paper .circle.top {
+  --brdr-color: var(--color-top-paper);
+}
+
+.rock .circle.bottom-half {
+  --brdr-color: var(--color-bottom-rock);
+}
+
+.rock .circle.top {
+  --brdr-color: var(--color-top-rock);
+}
+
+.scissor .circle.bottom-half {
+  --brdr-color: var(--color-bottom-scissors);
+}
+
+.scissor .circle.top {
+  --brdr-color: var(--color-top-scissors);
+}
+
+/* bottom-half and top will have different color */
+
+.bottom-half {
+  clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+}
+
+.top-half {
+  border-color: var(--color-light-shadow);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
+}
+
+.top {
+  transform: translateY(var(--attr-translate, -5px));
 }
